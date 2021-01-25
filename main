@@ -1,0 +1,34 @@
+#this code uses a simple caesar cypher to take a phrase and encrpyt it. It allows the user to input a key or choose a random key.
+
+from random2 import randrange
+
+def caesar():
+    phrase_input = input("What phrase do you want to encrypt? \n")
+    phrase_input =phrase_input.lower()
+    if phrase_input.isalpha() == False:
+        print ("Please try again!")
+        return
+    else:
+        pass
+    phrase = [ch for ch in phrase_input]
+    key_input = input("What key would you like to use? Enter a number between 1 and 26 or 'random' \n")
+    key_random = randrange(1,27)
+    if key_input.lower() == 'random':
+        key = key_random
+    elif 0 < int(key_input) < 27:
+        key = int(key_input)
+    else:
+        print ("Please try again!")
+        return
+    new_result = []
+    for ch in phrase:
+        result = ord(ch) + key
+        if result > 26:
+            result = result - 26
+        new_result.append(chr(result))
+    new_result = "".join(new_result)
+    print ("Your original phrase was " + (phrase_input))
+    print ("Your key is " + str(key))
+    print ("Your encrypted phrase is " + str(new_result))
+
+caesar()
